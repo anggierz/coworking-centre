@@ -1,4 +1,22 @@
 [
-    { "id": "S-1", "name": "Sala Alfa", "capacity": 4 },
-    { "id": "S-2", "name": "Sala Beta", "capacity": 6 }
+  {
+    "id": "S-1",
+    "name": "Sala Alfa",
+    "capacity": 4
+  },
+  {
+    "id": "S-2",
+    "name": "Sala Beta",
+    "capacity": 6
+  },
+  {
+    "id": "S-3",
+    "name": "Sala Gamma",
+    "capacity": 8
+  },
+  {
+    "id": "S-4",
+    "name": "Sala Delta",
+    "capacity": 10
+  }
 ]

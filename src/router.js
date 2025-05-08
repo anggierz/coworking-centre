@@ -19,7 +19,6 @@ export async function router(req, res) {
     else if (req.method === 'DELETE' && pathname.pathname.startsWith('/reservations/delete/')) {
         //Se extrae el último elemento de la ruta, que es el id de la reserva a eliminar
         const id = pathname.pathname.split('/').pop();
-        console.log(id);
         return deleteReservation(id, res);
     }
 
