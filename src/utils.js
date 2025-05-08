@@ -24,12 +24,17 @@ export const writeJson = async (f, data) => {
 
 
 export function send(res, status, payload) {
-    const body = JSON.stringify(payload);
-    res.writeHead(status, {
-        'Content-Type': 'application/json',
-        'Content-Length': Buffer.byteLength(body),
-    });
-    res.end(body);
+    if (status != 204) {
+        const body = JSON.stringify(payload);
+        res.writeHead(status, {
+            'Content-Type': 'application/json',
+            'Content-Length': Buffer.byteLength(body),
+        });
+        res.end(body);
+    } else {
+        res.statusCode = status;
+        res.end();
+    }
 }
 
 export function parseBody(req) {
