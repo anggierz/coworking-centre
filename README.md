@@ -4,7 +4,7 @@ Coworking Centre es una API REST sencilla desarrollada con Node.js y el módulo 
 # 🚀 Características
 
 Gestión de salas (rooms) con atributos: id, name, capacity.
-Gestión de reservas (reservations) con atributos: id, roomId, date, hour, userName.
+Gestión de reservas (reservations) con atributos: id, roomId, date, hour, userName, roomReservedFor.
 
 # 📬 Endpoints
 
@@ -21,10 +21,17 @@ Crea una nueva reserva. Ejemplo de cuerpo de la solicitud:
   "roomId": "S-1",
   "date": "2025-05-09",
   "hour": "10",
-  "userName": "Juan"
+  "userName": "Juan",
+  "roomReservedFor" 4
 }
 
 Antes de crear la reserva, se procederá a comprobar que la solicitud contiene los datos necesarios y que estos son válidos para realizar la reserva.
+
+Validaciones:
+
+- Que la fecha de reserva de la sala no sea a pasado.
+- Que la sala no esté ocupada en la fecha y hora de la reserva.
+- Que el número de personas para la reserva no supere la capacidad de la sala.
 
 ### DELETE /reservations/delete/:id
 Elimina una reserva específica por su ID.
