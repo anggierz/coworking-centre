@@ -1,5 +1,5 @@
 import { readJson, send, parseBody, writeJson } from "../utils.js";
-import { isPastDate, sameSlot } from "../validations.js";
+import { isPastDate, sameSlot, isRoomCapacityExceeded } from "../validations.js";
 import { RESERVATIONS_FILE, ROOMS_FILE } from "../config.js";
 import { randomUUID } from "node:crypto";
 
@@ -11,9 +11,9 @@ export async function getReservations(res) {
 
 export async function postReservation(req, res) {
     const body = await parseBody(req);
-    const { roomId, date, hour, userName } = body;
+    const { roomId, date, hour, userName, roomReservedFor } = body;
 
-    if (!roomId || !date || !hour || !userName) {
+    if (!roomId || !date || !hour || !userName|| !roomReservedFor) {
         return send(res, 400, { error: "Missing required fields" });
     }
 
@@ -30,6 +30,9 @@ export async function postReservation(req, res) {
     if (!room) {
         return send(res, 400, { error: "Room not found" });
     }
+
+    if (isRoomCapacityExceeded(room.capacity, roomReservedFor))
+        return send(res, 400, { error: "Room capacity exceeded" });
 
     if (reservations.some(r => sameSlot(r, body))) {
         return send(res, 400, { error: "A reservation exists for the requested time slot." });

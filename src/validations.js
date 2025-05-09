@@ -7,3 +7,7 @@ export function isPastDate(date, hour) {
 export function sameSlot(a,b) {
     return a.roomId === b.roomId && a.date === b.date && a.hour === b.hour; 
 }
+
+export function isRoomCapacityExceeded(roomCapacity, requestedCapacity) {
+    return requestedCapacity > roomCapacity;
+}
