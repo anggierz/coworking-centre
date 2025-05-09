@@ -4,6 +4,7 @@ Coworking Centre es una API REST sencilla desarrollada con Node.js y el módulo 
 # 🚀 Características
 
 Gestión de salas (rooms) con atributos: id, name, capacity.
+
 Gestión de reservas (reservations) con atributos: id, roomId, date, hour, userName, roomReservedFor.
 
 # 📬 Endpoints
